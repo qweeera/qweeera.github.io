@@ -20,28 +20,32 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="float型变量为什么只提供7位有效数据首先申明一下，这个7位是指整数部分和小数部分一共7位；c&#x2F;c++中，一个float 变量占据一个字（32 bits）; double (64bits)；遵照IEEE制定的浮点数表示法：| 类型   | 符号位 | 阶码 | 尾数 | 长度 || —— | —— | —- | —- | —- || float  | 1      | 8    | 23   |">
+<meta property="og:type" content="article">
+<meta property="og:title" content="float型变量为什么只提供7位有效数据">
+<meta property="og:url" content="http://yoursite.com/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="float型变量为什么只提供7位有效数据首先申明一下，这个7位是指整数部分和小数部分一共7位；c&#x2F;c++中，一个float 变量占据一个字（32 bits）; double (64bits)；遵照IEEE制定的浮点数表示法：| 类型   | 符号位 | 阶码 | 尾数 | 长度 || —— | —— | —- | —- | —- || float  | 1      | 8    | 23   |">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-02T12:22:25.301Z">
+<meta property="article:modified_time" content="2020-05-02T12:25:14.585Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Hexo</title>
+  <title>float型变量为什么只提供7位有效数据 | Hexo</title>
   
 
 
@@ -139,9 +143,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -157,10 +162,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">float型变量为什么只提供7位有效数据</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          float型变量为什么只提供7位有效数据
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -184,7 +188,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="float型变量为什么只提供7位有效数据"><a href="#float型变量为什么只提供7位有效数据" class="headerlink" title="float型变量为什么只提供7位有效数据"></a>float型变量为什么只提供7位有效数据</h4><p><strong>首先申明一下，这个7位是指整数部分和小数部分一共7位；</strong><br>c/c++中，一个float 变量占据一个字（32 bits）; double (64bits)；<br>遵照IEEE制定的浮点数表示法：<br>| 类型   | 符号位 | 阶码 | 尾数 | 长度 |<br>| —— | —— | —- | —- | —- |<br>| float  | 1      | 8    | 23   | 32   |<br>| double | 1      | 11   | 52   | 64   |</p>
+        <h4 id="float型变量为什么只提供7位有效数据"><a href="#float型变量为什么只提供7位有效数据" class="headerlink" title="float型变量为什么只提供7位有效数据"></a>float型变量为什么只提供7位有效数据</h4><p><strong>首先申明一下，这个7位是指整数部分和小数部分一共7位；</strong><br>c/c++中，一个float 变量占据一个字（32 bits）; double (64bits)；<br>遵照IEEE制定的浮点数表示法：<br>| 类型   | 符号位 | 阶码 | 尾数 | 长度 |<br>| —— | —— | —- | —- | —- |<br>| float  | 1      | 8    | 23   | 32   |<br>| double | 1      | 11   | 52   | 64   |</p>
 <p>计算机内都是以二进制来表达；<br>比如 9.125可以表达为<br>9   的二进制 1001<br>0.125 的二进制表示为  0.001<br>所以9.125 二进制表示为 1001.001</p>
 <p><code>1 * 2^3 + 0 * 2^2 + 0 * 2^1 + 1* 2^0  + 0 * 2^-1 + 0 * 2^-2 + 1 * 2^-3</code><br>任何一个数都可以通过泰勒多项式来展开表达。</p>
 <p>科学计数法为1.001001 * 2 ^ 3</p>
@@ -194,91 +198,30 @@
 <p>1/假定指数值大于等于23  则表达式表达都是整数，且精度达到8位<br>0xFFFFFF   16777215<br>0xFFFFFF   16777215.1<br>0x10000    16777216</p>
 <p>2/ 如果指数小于23，则必定有一位小数，此时最后一位式不确定位， 也就是说，有效位只有7位<br>8388607.5<br>8388607.0<br>8388607.1  最后一位的1 无法正确表达出来， 只能表达出8388607.0</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/hello-world/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-02 12:18:00" itemprop="dateCreated datePublished" datetime="2020-05-02T12:18:00+08:00">2020-05-02</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/02/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -331,6 +274,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#float型变量为什么只提供7位有效数据"><span class="nav-number">1.</span> <span class="nav-text">float型变量为什么只提供7位有效数据</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
