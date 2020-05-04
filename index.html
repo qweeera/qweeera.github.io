@@ -153,124 +153,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="LHM">
-      <meta itemprop="description" content="分享生活 分享技术">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="林间小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">float型变量为什么只提供7位有效数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-02 20:22:25" itemprop="dateCreated datePublished" datetime="2020-05-02T20:22:25+08:00">2020-05-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-04 11:44:17" itemprop="dateModified" datetime="2020-05-04T11:44:17+08:00">2020-05-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="float型变量为什么只提供7位有效数据"><a href="#float型变量为什么只提供7位有效数据" class="headerlink" title="float型变量为什么只提供7位有效数据"></a>float型变量为什么只提供7位有效数据</h4><p><strong>首先申明一下，这个7位是指整数部分和小数部分一共7位；</strong><br>c/c++中，一个float 变量占据四个字节（32 bits）; double变量占据8个字节 (64bits)；<br>遵照IEEE制定的浮点数表示法：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>符号位</th>
-<th>阶码</th>
-<th>尾数</th>
-<th>长度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>float</td>
-<td>1</td>
-<td>8</td>
-<td>23</td>
-<td>32</td>
-</tr>
-<tr>
-<td>double</td>
-<td>1</td>
-<td>11</td>
-<td>52</td>
-<td>64</td>
-</tr>
-</tbody></table>
-<ul>
-<li>符号位： 正值为0， 负值为1qie</li>
-<li>阶码位：8bits用来表示指数，由于有8位，可以表示 -127 ~ 128</li>
-<li>尾数位:用来存储小数点后面的数</li>
-</ul>
-<p>计算机内数字都是以二进制来表达；<br>浮点数的表示法完全按照如上所述：</p>
-<p>那么 9.125可以拆解为<br>9 的二进制 1001 ;  且0.125 的二进制表示为  0.001<br>所以9.125 二进制表示为 1001.001<br>$$<br>1<em>2^{3}+0</em>2^{2}+0<em>2^{1}+1</em>2^{0}+0<em>2^{-1}+0</em>2^{-2}+1*2^{-3}<br>$$</p>
-<p>任何一个数都可以通过泰勒多项式来展开表达。</p>
-<p>科学计数法为:<br>$$<br>9.125 = 1.001001*2^{3}<br>$$</p>
-<p>套用上述浮点数表示法：符号位为0， 阶码位为00000011； 尾数位00100100000000000000000</p>
-<p>这就是9.125存储在计算机中的真实形态。</p>
-<p><strong>在计算机中，任何一个数都可以表示为</strong><br>$$<br>1.bbbb * 2^{n}<br>$$</p>
-<p>其中bbbb部分就是他的尾数， n表示指数部分；<br>因为最高位这个1在表示任何一个数的形式时这里都是1，所以存储时实际上不保存这一位，这使得float的23bits的尾数可以表示24bits的精度， double中52bits的尾数可以表示53bits的精度。</p>
-<p><strong>通过上述计算机存储浮点数的方式，如何确定浮点数的精确度呢？</strong><br>我们以float的极限情况而定，尾数占23位，最大1.111_1111_1111_1111_1111_1111<br>换算成十进制是 16777215；</p>
-<p>（1）假定指数值大于等于23  则表达式表达都是整数，且精度达到8位<br>指数23   尾数0xFFFFFF    16777215</p>
-<p>指数24   尾数0xFFFFFF    167772150</p>
-<p>指数24   尾数0xFFFFFE    167772140</p>
-<p>  可以看到，精度能达到八位，167772140 到167772150 中间的十个数用float是无法表达的。</p>
-<p>(2)  如果指数为22，则有一位小数，此时最后一位式不确定位， 也就是说，有效位只有7位<br>指数22  尾数0xFFFFFF   8388607.5<br>指数22  尾数0xFFFFFE   8388607.0</p>
-<p>此时进度下降到7位， 8388607.1  最后一位的1 无法正确表达出来， 只能表达出8388607.0</p>
-<p>（3）如果指数为21， 则有两位小数，可以组合成0.00  0.01 0.10  0.11 四种情况，转化成十进制就是</p>
-<p>0  0.25  0.5  0.75 四种 </p>
-<p>指数21  尾数0xFFFFFFF  =&gt; 1111_1111_1111_1111_1111_11.11 ==&gt; 4194303.75</p>
-<p>此时精度下降到7位，整数部分能表达精确，小数部分只能表达0 0.25 0.5 0.75 四种，其他小数无法表达</p>
-<p>（4）如果指数为20， 则有三位小数，可以组合成0.000  0.001 0.010 0.011 0.100 0.101 0.110 0.111 共八种情况，转化成十进制就是0   0.125  0.25 0.375 0.5  0.625 0.75 0.875 </p>
-<p>指数20  尾数0xFFFFFFF =&gt;1111_1111_1111_1111_1111_1.111 ==&gt;2097151.875</p>
-<p>此时整数位的精度仍然是7位，但是第一位小数基本上是可以精准表达，（0.9和0.4还表达不出来)</p>
-<p>但是如果小数位继续增加，那么小数位的前几位就可以被精准表达了；此时即使整数位跌落到6位整数，那么小数位的第一位已经可以被精准表达，因此有效数据位仍然是7位 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/05/02/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -311,17 +193,138 @@
       
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LHM">
+      <meta itemprop="description" content="分享生活 分享技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林间小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">float型变量为什么只提供7位有效数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-02 12:14:30" itemprop="dateCreated datePublished" datetime="2020-05-02T12:14:30+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-04 12:21:09" itemprop="dateModified" datetime="2020-05-04T12:21:09+08:00">2020-05-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>首先申明一下，这个7位是指整数部分和小数部分一共7位；</strong><br>c/c++中，一个float 变量占据四个字节（32 bits）; double变量占据8个字节 (64bits)；<br>遵照IEEE制定的浮点数表示法：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>符号位</th>
+<th>阶码</th>
+<th>尾数</th>
+<th>长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>1</td>
+<td>8</td>
+<td>23</td>
+<td>32</td>
+</tr>
+<tr>
+<td>double</td>
+<td>1</td>
+<td>11</td>
+<td>52</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>符号位： 正值为0， 负值为1</li>
+<li>阶码位：8bits用来表示指数，由于有8位，可以表示 -127 ~ 128</li>
+<li>尾数位:用来存储小数点后面的数</li>
+</ul>
+<p>计算机内数字都是以二进制来表达；<br>浮点数的表示法完全按照如上所述：</p>
+<p>那么 9.125可以拆解为<br>9 的二进制 1001 ;  且0.125 的二进制表示为  0.001<br>所以9.125 二进制表示为 1001.001</p>
+<script type="math/tex; mode=display">
+1*2^{3}+0*2^{2}+0*2^{1}+1*2^{0}+0*2^{-1}+0*2^{-2}+1*2^{-3}</script><p>任何一个数都可以通过泰勒多项式来展开表达。</p>
+<p>科学计数法为:</p>
+<script type="math/tex; mode=display">
+9.125 = 1.001001*2^{3}</script><p>套用上述浮点数表示法：符号位为0， 阶码位为00000011； 尾数位00100100000000000000000</p>
+<p>这就是9.125存储在计算机中的真实形态。</p>
+<p><strong>在计算机中，任何一个数都可以表示为</strong></p>
+<script type="math/tex; mode=display">
+1.bbbb * 2^{n}</script><p>其中bbbb部分就是他的尾数， n表示指数部分；<br>因为最高位这个1在表示任何一个数的形式时这里都是1，所以存储时实际上不保存这一位，这使得float的23bits的尾数可以表示24bits的精度， double中52bits的尾数可以表示53bits的精度。</p>
+<p><strong>通过上述计算机存储浮点数的方式，如何确定浮点数的精确度呢？</strong><br>我们以float的极限情况而定，尾数占23位，最大1.111_1111_1111_1111_1111_1111<br>换算成十进制是 16777215；</p>
+<p>（1）假定指数值大于等于23  则表达式表达都是整数，且精度达到8位<br>指数23   尾数0xFFFFFF    16777215</p>
+<p>指数24   尾数0xFFFFFF    167772150</p>
+<p>指数24   尾数0xFFFFFE    167772140</p>
+<p>  可以看到，精度能达到八位，167772140 到167772150 中间的十个数用float是无法表达的。</p>
+<p>(2)  如果指数为22，则有一位小数，此时最后一位式不确定位， 也就是说，有效位只有7位<br>指数22  尾数0xFFFFFF   8388607.5<br>指数22  尾数0xFFFFFE   8388607.0</p>
+<p>此时进度下降到7位， 8388607.1  最后一位的1 无法正确表达出来， 只能表达出8388607.0</p>
+<p>（3）如果指数为21， 则有两位小数，可以组合成0.00  0.01 0.10  0.11 四种情况，转化成十进制就是</p>
+<p>0  0.25  0.5  0.75 四种 </p>
+<p>指数21  尾数0xFFFFFFF  =&gt; 1111_1111_1111_1111_1111_11.11 ==&gt; 4194303.75</p>
+<p>此时精度下降到7位，整数部分能表达精确，小数部分只能表达0 0.25 0.5 0.75 四种，其他小数无法表达</p>
+<p>（4）如果指数为20， 则有三位小数，可以组合成0.000  0.001 0.010 0.011 0.100 0.101 0.110 0.111 共八种情况，转化成十进制就是0   0.125  0.25 0.375 0.5  0.625 0.75 0.875 </p>
+<p>指数20  尾数0xFFFFFFF =&gt;1111_1111_1111_1111_1111_1.111 ==&gt;2097151.875</p>
+<p>此时整数位的精度仍然是7位，但是第一位小数基本上是可以精准表达，（0.9和0.4还表达不出来)</p>
+<p>但是如果小数位继续增加，那么小数位的前几位就可以被精准表达了；此时即使整数位跌落到6位整数，那么小数位的第一位已经可以被精准表达，因此有效数据位仍然是7位 。</p>
 
       
     </div>
@@ -488,6 +491,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
