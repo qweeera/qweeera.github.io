@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"qweeera.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="首先申明一下，这个7位是指整数部分和小数部分一共7位；c&#x2F;c++中，一个float 变量占据四个字节（32 bits）; double变量占据8个字节 (64bits)；遵照IEEE制定的浮点数表示法：     类型 符号位 阶码 尾数 长度     float 1 8 23 32   double 1 11 52 64      符号位： 正值为0， 负值为1 阶码位：8bits用来表示指数，由">
+  <meta name="description" content="进程的定义：进程是程序执行时的一个实例，你可以把它看作充分描述程序已经执行到何种程度的数据结构的汇集。 从内核观点看，进程的目的就是担当分配系统资源（cpu时间、内存等）的实体。 当一个进程创建时，它几乎与父进程相同。它接受父进程地址空间的一个拷贝，并从进程创建系统调用的下一条指令开始执行与父进程相同的代码。尽管父子进程可以共享含有程序代码的页，但是他们各自有独立的数据拷贝，因此子进程对一个内存单">
 <meta property="og:type" content="article">
-<meta property="og:title" content="float型变量为什么只提供7位有效数据">
-<meta property="og:url" content="https://qweeera.github.io/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:title" content="进程">
+<meta property="og:url" content="https://qweeera.github.io/2020/05/18/%E8%BF%9B%E7%A8%8B/index.html">
 <meta property="og:site_name" content="技术小站">
-<meta property="og:description" content="首先申明一下，这个7位是指整数部分和小数部分一共7位；c&#x2F;c++中，一个float 变量占据四个字节（32 bits）; double变量占据8个字节 (64bits)；遵照IEEE制定的浮点数表示法：     类型 符号位 阶码 尾数 长度     float 1 8 23 32   double 1 11 52 64      符号位： 正值为0， 负值为1 阶码位：8bits用来表示指数，由">
+<meta property="og:description" content="进程的定义：进程是程序执行时的一个实例，你可以把它看作充分描述程序已经执行到何种程度的数据结构的汇集。 从内核观点看，进程的目的就是担当分配系统资源（cpu时间、内存等）的实体。 当一个进程创建时，它几乎与父进程相同。它接受父进程地址空间的一个拷贝，并从进程创建系统调用的下一条指令开始执行与父进程相同的代码。尽管父子进程可以共享含有程序代码的页，但是他们各自有独立的数据拷贝，因此子进程对一个内存单">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-02T10:14:30.000Z">
-<meta property="article:modified_time" content="2020-05-10T01:46:18.065Z">
+<meta property="article:published_time" content="2020-05-17T23:09:00.000Z">
+<meta property="article:modified_time" content="2020-05-17T23:09:49.459Z">
 <meta property="article:author" content="LHM">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://qweeera.github.io/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/">
+<link rel="canonical" href="https://qweeera.github.io/2020/05/18/%E8%BF%9B%E7%A8%8B/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>float型变量为什么只提供7位有效数据 | 技术小站</title>
+  <title>进程 | 技术小站</title>
   
 
 
@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/05/02/float%E5%9E%8B%E5%8F%98%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%8F%90%E4%BE%9B7%E4%BD%8D%E6%9C%89%E6%95%88%E6%95%B0%E6%8D%AE/">
+    <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/05/18/%E8%BF%9B%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          float型变量为什么只提供7位有效数据
+          进程
         </h1>
 
         <div class="post-meta">
@@ -178,16 +178,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-05-02 18:14:30" itemprop="dateCreated datePublished" datetime="2020-05-02T18:14:30+08:00">2020-05-02</time>
+              <time title="创建时间：2020-05-18 07:09:00 / 修改时间：07:09:49" itemprop="dateCreated datePublished" datetime="2020-05-18T07:09:00+08:00">2020-05-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-10 09:46:18" itemprop="dateModified" datetime="2020-05-10T09:46:18+08:00">2020-05-10</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -207,67 +201,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>首先申明一下，这个7位是指整数部分和小数部分一共7位；</strong><br>c/c++中，一个float 变量占据四个字节（32 bits）; double变量占据8个字节 (64bits)；<br>遵照IEEE制定的浮点数表示法：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>符号位</th>
-<th>阶码</th>
-<th>尾数</th>
-<th>长度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>float</td>
-<td>1</td>
-<td>8</td>
-<td>23</td>
-<td>32</td>
-</tr>
-<tr>
-<td>double</td>
-<td>1</td>
-<td>11</td>
-<td>52</td>
-<td>64</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>符号位： 正值为0， 负值为1</li>
-<li>阶码位：8bits用来表示指数，由于有8位，可以表示 -127 ~ 128</li>
-<li>尾数位:用来存储小数点后面的数</li>
-</ul>
-<p>计算机内数字都是以二进制来表达；<br>浮点数的表示法完全按照如上所述：</p>
-<p>那么 9.125可以拆解为<br>9 的二进制 1001 ;  且0.125 的二进制表示为  0.001<br>所以9.125 二进制表示为 1001.001</p>
-<script type="math/tex; mode=display">
-1*2^{3}+0*2^{2}+0*2^{1}+1*2^{0}+0*2^{-1}+0*2^{-2}+1*2^{-3}</script><p>任何一个数都可以通过泰勒多项式来展开表达。</p>
-<p>科学计数法为:</p>
-<script type="math/tex; mode=display">
-9.125 = 1.001001*2^{3}</script><p>套用上述浮点数表示法：符号位为0， 阶码位为00000011； 尾数位00100100000000000000000</p>
-<p>这就是9.125存储在计算机中的真实形态。</p>
-<p><strong>在计算机中，任何一个数都可以表示为</strong></p>
-<script type="math/tex; mode=display">
-1.bbbb * 2^{n}</script><p>其中bbbb部分就是他的尾数， n表示指数部分；<br>因为最高位这个1在表示任何一个数的形式时这里都是1，所以存储时实际上不保存这一位，这使得float的23bits的尾数可以表示24bits的精度， double中52bits的尾数可以表示53bits的精度。</p>
-<p><strong>通过上述计算机存储浮点数的方式，如何确定浮点数的精确度呢？</strong><br>我们以float的极限情况而定，尾数占23位，最大1.111_1111_1111_1111_1111_1111<br>换算成十进制是 16777215；</p>
-<p>（1）假定指数值大于等于23  则表达式表达都是整数，且精度达到8位<br>指数23   尾数0xFFFFFF    16777215</p>
-<p>指数24   尾数0xFFFFFF    167772150</p>
-<p>指数24   尾数0xFFFFFE    167772140</p>
-<p>  可以看到，精度能达到八位，167772140 到167772150 中间的十个数用float是无法表达的。</p>
-<p>(2)  如果指数为22，则有一位小数，此时最后一位式不确定位， 也就是说，有效位只有7位<br>指数22  尾数0xFFFFFF   8388607.5<br>指数22  尾数0xFFFFFE   8388607.0</p>
-<p>此时进度下降到7位， 8388607.1  最后一位的1 无法正确表达出来， 只能表达出8388607.0</p>
-<p>（3）如果指数为21， 则有两位小数，可以组合成0.00  0.01 0.10  0.11 四种情况，转化成十进制就是</p>
-<p>0  0.25  0.5  0.75 四种 </p>
-<p>指数21  尾数0xFFFFFFF  =&gt; 1111_1111_1111_1111_1111_11.11 ==&gt; 4194303.75</p>
-<p>此时精度下降到7位，整数部分能表达精确，小数部分只能表达0 0.25 0.5 0.75 四种，其他小数无法表达</p>
-<p>（4）如果指数为20， 则有三位小数，可以组合成0.000  0.001 0.010 0.011 0.100 0.101 0.110 0.111 共八种情况，转化成十进制就是0   0.125  0.25 0.375 0.5  0.625 0.75 0.875 </p>
-<p>指数20  尾数0xFFFFFFF =&gt;1111_1111_1111_1111_1111_1.111 ==&gt;2097151.875</p>
-<p>此时整数位的精度仍然是7位，但是第一位小数基本上是可以精准表达，（0.9和0.4还表达不出来)</p>
-<p>但是如果小数位继续增加，那么小数位的前几位就可以被精准表达了；此时即使整数位跌落到6位整数，那么小数位的第一位已经可以被精准表达，因此有效数据位仍然是7位 。</p>
+        <p>进程的定义：进程是程序执行时的一个实例，你可以把它看作充分描述程序已经执行到何种程度的数据结构的汇集。</p>
+<p>从内核观点看，进程的目的就是担当分配系统资源（cpu时间、内存等）的实体。</p>
+<p>当一个进程创建时，它几乎与父进程相同。它接受父进程地址空间的一个拷贝，并从进程创建系统调用的下一条指令开始执行与父进程相同的代码。尽管父子进程可以共享含有程序代码的页，但是他们各自有独立的数据拷贝，因此子进程对一个内存单元的修改对父进程是不可见的。</p>
+<p>Linux没有提供多线程的支持，因为多线程必须要求每个线程为非阻塞，否则将导致其他的线程得不到调度。原因是一个进程中的两个线程不是由内核独立调度的。<br><strong>能被独立调度的每个执行上下文都必须拥有它自己的进程描述符，简单来说调度是以进程为单位的！ 线程无法一个个的得到调度，那么如果一个线程在睡眠的，同一进程下的另一线程也无法得到得到执行了</strong><br>Linux采用的是<em>轻量级进程</em>来对多线程应用程序提供良好的支持。两个轻量级进程基本上可以共享一些资源，诸如地址空间，同一打开的文件等，<strong>同时，每个线程都可以由内核独立调度，以便一个线程睡眠的时候，另一个可以得到调度。</strong></p>
+<p>因为，我们看到的线程实际上是<strong>轻量级进程</strong>，那么同一进程下的多个线程的pid自然就不一样了；但是有时候程序员希望同一组中的线程有共同的PID,这个时候，Linux引入线程组的表示。</p>
+<p>线程组：一个线程组中的所有线程使用和该线程组的领头线程相同的PID，也就是该组中第一个轻量级进程的PID,他被存入进程描述符tgid 字段中。</p>
+<p><strong>getpid()系统调用返回当前进程的tgid值而不是pid的值</strong></p>
+<h4 id="父子进程中全局变量"><a href="#父子进程中全局变量" class="headerlink" title="父子进程中全局变量"></a>父子进程中全局变量</h4><p>fork()函数父子进程会共享全局变量吗？<br>答案是NO<br>子进程会继承父进程的全局变量；也就是说在子进程在创建之后，会拷贝父进程全局变量的值。但是创建以后，子进程修改了该变量，或者父进程修改了该变量，互相都不影响了。</p>
+<h4 id="内核中有进程的概念吗"><a href="#内核中有进程的概念吗" class="headerlink" title="内核中有进程的概念吗"></a>内核中有进程的概念吗</h4><p>内核中没有进程这一概念，只有内核线程。<br>内核线程只运行在内核态，而普通进程既可以运行在内核态，也可以运行在用户态。<br>因为内核线程只运行在内核态，它们只使用大于PAGE_OFFSET的线性地址空间。普通进程不管在用户态还是内核态，都有4GB的线性地址空间。？？？？？</p>
+<p>内核线程与用户线程的相同点是：</p>
+<p>都由do_fork()创建，每个线程都有独立的task_struct和内核栈；<br>都参与调度，内核线程也有优先级，会被调度器平等地换入换出<br>不同之处在于：</p>
+<p>内核线程只工作在内核态中；而用户线程则既可以运行在内核态（执行系统调用时），也可以运行在用户态；<br>内核线程没有用户空间，所以对于一个内核线程来说，它的0~3G的内存空间是空白的，它的current-&gt;mm是空的，与内核使用同一张页表；而用户线程则可以看到完整的0~4G内存空间。</p>
+<p>在Linux内核启动的最后阶段，系统会创建两个内核线程，一个是init，一个是kthreadd。其中init线程的作用是运行文件系统上的一系列”init”脚本，并启动shell进程，所以init线程称得上是系统中所有用户进程的祖先，它的pid是1。kthreadd线程是内核的守护线程，在内核正常工作时，它永远不退出，是一个死循环，它的pid是2。<br>————————————————</p>
 
     </div>
 
@@ -283,13 +229,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/02/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2020/05/10/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88/" rel="prev" title="一篇文章搞定数组和指针">
+      <i class="fa fa-chevron-left"></i> 一篇文章搞定数组和指针
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/10/%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88/" rel="next" title="一篇文章搞定数组和指针">
-      一篇文章搞定数组和指针 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -348,6 +291,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#父子进程中全局变量"><span class="nav-number">1.</span> <span class="nav-text">父子进程中全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内核中有进程的概念吗"><span class="nav-number">2.</span> <span class="nav-text">内核中有进程的概念吗</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
