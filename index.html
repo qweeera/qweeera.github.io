@@ -164,6 +164,79 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/07/14/6_%E6%B8%90%E8%BF%9B%E8%AE%B0%E5%8F%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LHM">
+      <meta itemprop="description" content="分享生活 分享技术">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术小站">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/14/6_%E6%B8%90%E8%BF%9B%E8%AE%B0%E5%8F%B7/" class="post-title-link" itemprop="url">渐进记号</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-14 07:19:00 / 修改时间：07:25:39" itemprop="dateCreated datePublished" datetime="2020-07-14T07:19:00+08:00">2020-07-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorith/" itemprop="url" rel="index"><span itemprop="name">algorith</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="常用渐进记号"><a href="#常用渐进记号" class="headerlink" title="常用渐进记号"></a>常用渐进记号</h4><h5 id="1、-Theta-记号"><a href="#1、-Theta-记号" class="headerlink" title="1、$\Theta$记号"></a>1、$\Theta$记号</h5><p><strong>定义</strong>： 对一个给定的函数g(n), 用$\Theta$(g(n))来表示以下函数集合<br>$\Theta(g(n))$ = {f(n): 存在正常量$c_1$、$c_2$和$n_0$, 使得对所有$n \ge n_0$, 有$0 \le c_1g(n)\le f(n)\le c_2g(n)$}<br><strong>举例</strong><br>$\frac{1}{2}n^2 - 3n=\Theta(n^2)$  存在正常量$c_1$、$c_2$和$n_0$,使得对所有$n \ge n_0$, 有<br> $c_1n^2\le \frac{1}{2}n^2 - 3n\le c_2n^2$; </p>
+<p> 可以看出<br> <img src="en-resource://database/2088:0" alt="b387e500bb8a699b4c0f28ec53c59be3.jpeg"></p>
+<p>从上图可以看到， $\Theta$ 是要求最严格的，因为g(n)既可以表示上界也可以表示下界。</p>
+<h5 id="2、O记号"><a href="#2、O记号" class="headerlink" title="2、O记号"></a>2、O记号</h5><p><strong>定义</strong>： 对一个给定的函数g(n), 用O(g(n))来表示以下函数集合<br>$O(g(n))$ = {f(n): 存在正常量c和$n_0$, 使得对所有$n \ge n_0$, 有$0 \le f(n)\le cg(n)$}<br><strong>举例</strong><br>$\frac{1}{2}n^2 - 3n=O(n^3)$  存在正常量$c$和$n_0$,使得对所有$n \ge n_0$, 有$\frac{1}{2}n^2 - 3n\le c_2n^3$;<br>f(n) = O(g(n)) 指出函数f(n)是集合O(g(n))的成员。<br>O(g(n))中g(n)表示渐进上界。</p>
+<h5 id="3、-Omega-记号"><a href="#3、-Omega-记号" class="headerlink" title="3、$\Omega$记号"></a>3、$\Omega$记号</h5><p>$\Omega$(g(n))中g(n)表示渐进下界。</p>
+<h5 id="4、符号在算法中的运用"><a href="#4、符号在算法中的运用" class="headerlink" title="4、符号在算法中的运用"></a>4、符号在算法中的运用</h5><p>插入排序中，最坏情况是$\Theta(n^2)$; 但是最好情况，也就是排好序的情况，运行时间为$\Theta(n)$；<br>因此我们一般使用O符号来表示：<br>$O(n^2)$ : 存在一个$O(n^2)$的函数f(n),使得对n的任意值，不管选择什么特定的规模为n的输入，其运行时间的上界都是f(n)。 也就是说最坏情况运行时间为$O(n^2)$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qweeera.github.io/2020/06/26/5_%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -613,14 +686,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
